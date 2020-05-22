@@ -1,5 +1,7 @@
 package moe.jae.osrlauncher;
 
+import javax.swing.*;
+
 public class Launcher {
 
     private String _CONFIG_DIRECTORY;
@@ -16,6 +18,16 @@ public class Launcher {
 
     public String getConfigDir() {
         return this._CONFIG_DIRECTORY;
+    }
+
+    public void initializeLauncher() {
+
+        try {
+
+        } catch (UnsupportedLookAndFeelException error) {
+            System.out.println(error);
+        }
+
     }
 
 }

@@ -46,7 +46,7 @@ public class Main {
             }
         }
 
-        Launcher mainLauncher = new Launcher(configFileLocation);
+        Launcher mainLauncher = new Launcher(configFileLocation, cacheFolderLocation);
 
     }
 
