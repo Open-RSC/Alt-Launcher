@@ -13,6 +13,9 @@ public class Defaults {
     public final static String _OPENPK_WORLD_STATS = "https://storkpk.org";
     public final static String _DEV_WORLD_STATS = "https://orsc.dev";
 
+    // URLS
+    public final static String _GAME_VERSION_UPDATE_URL = "https://orsc.dev/jae/alternative-openrsc-launcher/-/raw/master/src/main/java/moe/jae/osrlauncher/Utils/Defaults.java";
+
     // STRINGS
     public final static String _TITLE = "Open RSC Game Launcher";
 
@@ -21,5 +24,8 @@ public class Defaults {
     public final static String _CLIENT_OPENPK_FILENAME = "Open_PK_Client.jar";
     public final static String _LAUNCHER_FILENAME = "OpenRSC.jar";
     public final static String _MD5_TABLE_FILENAME = "MD5.SUM";
+
+    // VERSION
+    public final static Double _CURRENT_VERSION = 20200324.130000;
 
 }
