@@ -92,6 +92,13 @@ public class Md5Handler {
         public String getSum() { return this.sum; }
         public File getRef() { return this.ref; }
 
+        public File getDownloadRef() {
+            String curRef = this.ref.toString();
+            String newRef = curRef.replace(this.configDir, "").replaceAll("\\\\", "/").replaceFirst("/", "");
+            File finalRef = new File(newRef);
+            return finalRef;
+        }
+
     }
 
     public static String getMD5Checksum(File file) {

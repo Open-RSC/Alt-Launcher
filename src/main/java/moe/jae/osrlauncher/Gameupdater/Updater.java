@@ -18,7 +18,7 @@ public class Updater {
             gamePath.mkdir();
 
         Downloader gameUpdater = new Downloader(this._CACHE_DIR);
-        gameUpdater.populateMd5Table();
+        gameUpdater.initUpdate();
 
     }
 

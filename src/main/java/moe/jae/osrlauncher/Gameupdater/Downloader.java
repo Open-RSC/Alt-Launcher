@@ -1,6 +1,7 @@
 package moe.jae.osrlauncher.Gameupdater;
 
 import moe.jae.osrlauncher.Gameupdater.UpdaterGui.MainUpdaterGui;
+import moe.jae.osrlauncher.Main;
 import moe.jae.osrlauncher.Utils.Defaults;
 
 import java.io.BufferedInputStream;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class Downloader {
 
     private ArrayList<String> _EXCLUDED_FILES = new ArrayList<>();
+    private ArrayList<String> _REFUSE_UPDATE = new ArrayList<>();
     private String _GAMEFOLDER;
     private MainUpdaterGui _UPDATERGUI;
 
@@ -31,14 +33,45 @@ public class Downloader {
         _UPDATERGUI.init();
     }
 
-    public void populateMd5Table() {
+    public void initUpdate() {
         _UPDATERGUI.setWinVisible();
 
-        File currentMd5Table = new File(this._GAMEFOLDER + File.separator + Defaults._MD5_TABLE_FILENAME);
-        if(currentMd5Table.exists())
-            currentMd5Table.delete();
+        try {
 
-        Download(new File(Defaults._MD5_TABLE_FILENAME));
+            MainUpdaterGui.get().setDownloadProgress("Checking for updates", 100.0f);
+
+            // Populate MD5 checksums
+            File currentMd5Table = new File(this._GAMEFOLDER + File.separator + Defaults._MD5_TABLE_FILENAME);
+            if(currentMd5Table.exists())
+                currentMd5Table.delete();
+            Download(new File(Defaults._MD5_TABLE_FILENAME));
+
+            Md5Handler localCache = new Md5Handler(currentMd5Table.getParentFile(), this._GAMEFOLDER);
+            Md5Handler remoteCache = new Md5Handler(currentMd5Table, this._GAMEFOLDER);
+
+            for(Md5Handler.Entry entry : remoteCache.entries) {
+
+                if(_EXCLUDED_FILES.contains(entry.getRef().getName()))
+                    continue;
+
+                entry.getRef().getParentFile().mkdirs();
+
+                String localSum = localCache.getRefSum(entry.getRef());
+                if(localSum != null) {
+                    if(_REFUSE_UPDATE.contains(entry.getRef().getName()) ||
+                            localSum.equalsIgnoreCase(entry.getSum())) {
+                        continue;
+                    }
+                }
+
+                Download(entry.getDownloadRef());
+
+            }
+
+        } catch (Exception error) {
+            System.out.println("Unable to load checksums.");
+            error.printStackTrace();
+        }
 
         _UPDATERGUI.hideWin();
     }
@@ -47,11 +80,14 @@ public class Downloader {
 
         try {
 
-            String filename = file.toString();
+            String filename = file.toString().replaceAll("\\\\", "/");
 
             String completeFileUrl = Defaults._GAME_FILES_SERVER + filename;
 
             URLConnection connection = new URL(completeFileUrl).openConnection();
+
+            System.out.println("File: " + filename);
+            System.out.println("URL: " + completeFileUrl);
 
             // File metadata
             String description = getDescription(file);
