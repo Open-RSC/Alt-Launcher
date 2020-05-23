@@ -38,33 +38,48 @@ public class Downloader {
         if(currentMd5Table.exists())
             currentMd5Table.delete();
 
-        String description = getDescription(new File(Defaults._MD5_TABLE_FILENAME));
+        Download(new File(Defaults._MD5_TABLE_FILENAME));
 
-        int fileSize = 0;
+        _UPDATERGUI.hideWin();
+    }
+
+    private void Download(File file) {
 
         try {
-            URLConnection connection = new URL(Defaults._GAME_FILES_SERVER + Defaults._MD5_TABLE_FILENAME).openConnection();
-            fileSize = connection.getContentLength();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return; // Return because if fails, division by 0
-        }
 
-        try(BufferedInputStream inputStream = new BufferedInputStream(new URL(Defaults._GAME_FILES_SERVER + Defaults._MD5_TABLE_FILENAME).openStream());
-            FileOutputStream fileOS = new FileOutputStream(this._GAMEFOLDER + File.separator +Defaults._MD5_TABLE_FILENAME)) {
-            byte data[] = new byte[1024];
-            int byteContent;
-            int totalRead = 0;
-            while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
-                totalRead += byteContent;
-                fileOS.write(data, 0, byteContent);
-                MainUpdaterGui.get().setDownloadProgress(description, (float) (totalRead * 100 / fileSize));
+            String filename = file.toString();
+
+            String completeFileUrl = Defaults._GAME_FILES_SERVER + filename;
+
+            URLConnection connection = new URL(completeFileUrl).openConnection();
+
+            // File metadata
+            String description = getDescription(file);
+            int fileSize = connection.getContentLength();
+
+            try (BufferedInputStream inputStream = new BufferedInputStream(new URL(completeFileUrl).openStream());
+            FileOutputStream fileOS = new FileOutputStream(this._GAMEFOLDER + File.separator + filename)){
+                byte data[] = new byte[1024];
+                int byteContent;
+                int totalRead = 0;
+
+                while((byteContent = inputStream.read(data, 0, 1024)) != -1) {
+
+                    totalRead += byteContent;
+                    fileOS.write(data, 0, byteContent);
+                    MainUpdaterGui.get().setDownloadProgress(description, (float) (totalRead * 100 / fileSize));
+
+                }
+
+            } catch (Exception error) {
+                error.printStackTrace();
             }
+
+
         } catch (Exception error) {
             error.printStackTrace();
         }
 
-        _UPDATERGUI.hideWin();
     }
 
     private String getDescription(File ref) {
