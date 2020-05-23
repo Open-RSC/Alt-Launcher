@@ -30,12 +30,15 @@ public class ClientLauncher {
 
         File gameFile;
 
+        System.out.println("Config dir: " + this.configDirectory);
+        System.out.println("Game type: " + this.gameType);
+
         switch (this.gameType) {
-            case "base":
+            case "openpk":
                 gameFile = new File(this.configDirectory + File.separator + Defaults._CLIENT_OPENPK_FILENAME);
                 break;
 
-            case "openpk":
+            case "default":
                 gameFile = new File(this.configDirectory + File.separator + Defaults._CLIENT_FILENAME);
                 break;
 
@@ -44,6 +47,7 @@ public class ClientLauncher {
         }
 
         try {
+            System.out.println("Launching!");
             ProcessBuilder gameProcess = new ProcessBuilder(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java", "-jar", gameFile.getAbsolutePath());
             gameProcess.start();
         } catch (Exception error) {

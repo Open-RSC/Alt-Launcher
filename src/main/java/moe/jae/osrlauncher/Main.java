@@ -47,6 +47,8 @@ public class Main {
             }
         }
 
+        System.out.println(configFileLocation);
+
         ClientLauncher launcher = new ClientLauncher(configFileLocation, "default");
         launcher.launch();
 
