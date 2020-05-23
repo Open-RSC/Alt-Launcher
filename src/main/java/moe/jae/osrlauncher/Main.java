@@ -49,7 +49,8 @@ public class Main {
 
         System.out.println(configFileLocation);
 
-        ClientLauncher launcher = new ClientLauncher(configFileLocation, "default");
+        // Cabbage test
+        ClientLauncher launcher = new ClientLauncher(configFileLocation, "default", "game.openrsc.com", "43595");
         launcher.launch();
 
         //Launcher mainLauncher = new Launcher(configFileLocation, cacheFolderLocation);

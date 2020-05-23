@@ -2,6 +2,8 @@ package moe.jae.osrlauncher.Utils;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 
 public class ClientLauncher {
 
@@ -10,20 +12,14 @@ public class ClientLauncher {
     private String configDirectory;
     private String gameType;
     private static JFrame frame;
+    private String ip;
+    private String port;
 
-    public ClientLauncher() {
-        this.configDirectory = Defaults._DEFAULT_CONFIG_DIR;
-        this.gameType = "base";
-    }
-
-    public ClientLauncher(String configDir) {
-        this.configDirectory = configDir;
-        this.gameType = "base";
-    }
-
-    public ClientLauncher(String configDir, String gameType) {
+    public ClientLauncher(String configDir, String gameType, String ip, String port) {
         this.configDirectory = configDir;
         this.gameType = gameType;
+        this.ip = ip;
+        this.port = port;
     }
 
     public void launch() {
@@ -46,6 +42,8 @@ public class ClientLauncher {
                 return;
         }
 
+        set(this.ip, this.port, this.gameType);
+
         try {
             System.out.println("Launching!");
             ProcessBuilder gameProcess = new ProcessBuilder(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java", "-jar", gameFile.getAbsolutePath());
@@ -54,6 +52,39 @@ public class ClientLauncher {
             System.out.println("Something bad happened, please report this error to admins:\n");
             error.printStackTrace();
         }
+
+    }
+
+    private void set(String ip, String port, String type) {
+
+        FileOutputStream fileOutIp;
+        FileOutputStream fileOutPort;
+        try {
+
+            switch (type) {
+                case "default":
+                    fileOutIp = new FileOutputStream(this.configDirectory + File.separator + "ip.txt");
+                    fileOutPort = new FileOutputStream(this.configDirectory + File.separator + "port.txt");
+                    break;
+
+                case "openpk":
+                    fileOutIp = new FileOutputStream(this.configDirectory + File.separator + "PK" + File.separator + "ip.txt");
+                    fileOutPort = new FileOutputStream(this.configDirectory + File.separator + "PK" + File.separator + "port.txt");
+                    break;
+
+                default:
+                    return;
+            }
+
+            OutputStreamWriter outputWriterip = new OutputStreamWriter(fileOutIp);
+            outputWriterip.write(ip);
+            outputWriterip.close();
+
+            OutputStreamWriter outputWriterPort = new OutputStreamWriter(fileOutPort);
+            outputWriterPort.write(port);
+            outputWriterPort.close();
+
+        } catch (Exception ignoredError) {}
 
     }
 
