@@ -26,9 +26,6 @@ public class ClientLauncher {
 
         File gameFile;
 
-        System.out.println("Config dir: " + this.configDirectory);
-        System.out.println("Game type: " + this.gameType);
-
         switch (this.gameType) {
             case "openpk":
                 gameFile = new File(this.configDirectory + File.separator + Defaults._CLIENT_OPENPK_FILENAME);
