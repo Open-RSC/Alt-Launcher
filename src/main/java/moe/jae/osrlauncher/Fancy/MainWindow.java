@@ -73,12 +73,40 @@ public class MainWindow extends JFrame {
 
     private void addListeners() {
         final String currentGameFolder = this._CONFIG_DIR;
+
         // Launch cabbage
         this._CABBAGE_LOGO.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 ClientLauncher cabbageLauncher = new ClientLauncher(currentGameFolder, "default", "game.openrsc.com", "43595");
                 cabbageLauncher.launch();
+            }
+        });
+
+        // Launch dev
+        this._DEV_LOGO.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ClientLauncher devLauncher = new ClientLauncher(currentGameFolder, "default", "orsc.dev", "43599");
+                devLauncher.launch();
+            }
+        });
+
+        // Launch OpenPK
+        this._OPENPK_LOGO.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ClientLauncher pkLauncher = new ClientLauncher(currentGameFolder, "openpk", "openpk.openrsc.com", "43597");
+                pkLauncher.launch();
+            }
+        });
+
+        // Launch OpenRSC
+        this._OPENRSC_LOGO.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ClientLauncher rscLauncher = new ClientLauncher(currentGameFolder, "default", "game.openrsc.com", "43596");
+                rscLauncher.launch();
             }
         });
     }
