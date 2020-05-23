@@ -1,6 +1,5 @@
 package moe.jae.osrlauncher;
 
-import moe.jae.osrlauncher.Utils.ClientLauncher;
 import moe.jae.osrlauncher.Utils.Defaults;
 import moe.jae.osrlauncher.Utils.Utils;
 
