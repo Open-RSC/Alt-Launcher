@@ -14,14 +14,13 @@ public class Launcher {
     }
 
     public void initializeLauncher() {
-        /* TODO
-        *   DOWNLOAD ALL GAME FILES TO THE CACHE FOLDER */
         Updater updater = new Updater(this._CONFIG_DIRECTORY, Defaults._CURRENT_VERSION.toString());
         updater.updateGame();
 
         // Initialize UI
         launcherWindow = new MainWindow();
         launcherWindow.initializeWindow();
+        launcherWindow.build();
     }
 
 }
