@@ -12,21 +12,7 @@ public class Launcher {
         this._CACHE_DIRECTORY = cacheDirectory;
     }
 
-    public String getCacheDir() {
-        return this._CACHE_DIRECTORY;
-    }
-
-    public String getConfigDir() {
-        return this._CONFIG_DIRECTORY;
-    }
-
     public void initializeLauncher() {
-
-        try {
-
-        } catch (UnsupportedLookAndFeelException error) {
-            System.out.println(error);
-        }
 
     }
 

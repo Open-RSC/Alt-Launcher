@@ -1,5 +1,6 @@
 package moe.jae.osrlauncher;
 
+import moe.jae.osrlauncher.Utils.ClientLauncher;
 import moe.jae.osrlauncher.Utils.Defaults;
 import moe.jae.osrlauncher.Utils.Utils;
 
@@ -46,7 +47,10 @@ public class Main {
             }
         }
 
-        Launcher mainLauncher = new Launcher(configFileLocation, cacheFolderLocation);
+        ClientLauncher launcher = new ClientLauncher(configFileLocation, "default");
+        launcher.launch();
+
+        //Launcher mainLauncher = new Launcher(configFileLocation, cacheFolderLocation);
 
     }
 

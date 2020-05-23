@@ -47,7 +47,7 @@ public class Utils {
     public static Font getFont(final String fontName, final int type, final float size) {
 
         try {
-            Font font = Font.createFont(0, Utils.class.getResource("/data/fonts/" + fontName).openStream())
+            Font font = Font.createFont(0, Utils.class.getResource("/data/fonts/" + fontName).openStream());
 
             final GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
