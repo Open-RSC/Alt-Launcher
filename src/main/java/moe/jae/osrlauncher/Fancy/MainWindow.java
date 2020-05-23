@@ -20,10 +20,8 @@ public class MainWindow {
         launcherWindow.setResizable(false);
         launcherWindow.setIconImage(Utils.getImage("icon.png").getImage());
         launcherWindow.setFont(Utils.getFont("Helvetica.otf", 0, 11.0f));
-    }
 
-    public void populateWindow() {
-
+        launcherWindow.setContentPane(new Elements());
     }
 
 }

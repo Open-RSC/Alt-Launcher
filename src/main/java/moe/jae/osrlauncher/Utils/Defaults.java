@@ -4,7 +4,6 @@ public class Defaults {
 
     // DEFAULT FOLDERS
     public final static String _DEFAULT_CONFIG_DIR = "Cache";
-    public final static String _DEFAULT_CACHE_DIR = _DEFAULT_CONFIG_DIR + "/Downloads";
 
     // WORLD STATS
     public final static String _RSCC_WORLD_STATS = "https://rsccabbage.com";
@@ -15,6 +14,7 @@ public class Defaults {
 
     // URLS
     public final static String _GAME_VERSION_UPDATE_URL = "https://orsc.dev/jae/alternative-openrsc-launcher/-/raw/master/src/main/java/moe/jae/osrlauncher/Utils/Defaults.java";
+    public final static String _GAME_FILES_SERVER = "http://game.openrsc.com/downloads/";
 
     // STRINGS
     public final static String _TITLE = "Open RSC Game Launcher";

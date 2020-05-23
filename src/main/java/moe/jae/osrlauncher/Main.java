@@ -10,7 +10,6 @@ public class Main {
 
         // Config file default
         String configFileLocation = Defaults._DEFAULT_CONFIG_DIR;
-        String cacheFolderLocation = Defaults._DEFAULT_CACHE_DIR;
 
         // Get args from the command line if any
         if(args.length > 0) {
@@ -29,7 +28,6 @@ public class Main {
                     // Check if the provided arg is a valid path
                     if(Utils.isValidPath(args[1])) { // Valid path
                         configFileLocation = Utils.getCanonicalPath(args[1]);
-                        cacheFolderLocation = configFileLocation + "/Downloads";
                     } else { // Invalid path
                         System.out.println("Error: please provide a valid path.\n" +
                                 "Usage: java -jar OpenRSC.jar -d /path/to/cache/folder");
@@ -47,7 +45,7 @@ public class Main {
             }
         }
 
-        Launcher mainLauncher = new Launcher(configFileLocation, cacheFolderLocation);
+        Launcher mainLauncher = new Launcher(configFileLocation);
         mainLauncher.initializeLauncher();
 
     }
