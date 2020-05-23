@@ -16,12 +16,8 @@ public class MainUpdaterGui extends JFrame {
         MainUpdaterGui._INSTANCE = this;
     }
 
-    public void setWinVisible() {
-        this._UPDATER_WINDOW.setVisible(true);
-    }
-
     public void hideWin() {
-        this._UPDATER_WINDOW.setVisible(false);
+        this.setVisible(false);
     }
 
     public static MainUpdaterGui get() {
@@ -30,24 +26,37 @@ public class MainUpdaterGui extends JFrame {
 
     public void init() {
         _UPDATER_WINDOW = new JFrame();
-        _UPDATER_WINDOW.setVisible(false);
-        _UPDATER_WINDOW.setSize(400,200);
-        _UPDATER_WINDOW.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        _UPDATER_WINDOW.setUndecorated(true);
-        _UPDATER_WINDOW.setTitle("ORSC Updater");
-        _UPDATER_WINDOW.setIconImage(Utils.getImage("icon.png").getImage());
-        _UPDATER_WINDOW.setLocationRelativeTo(null);
+        this.setPreferredSize(new Dimension(400, 200));
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setUndecorated(true);
+        this.setTitle("ORSC Updater");
+        this.setIconImage(Utils.getImage("icon.png").getImage());
+    }
 
+    public void build() {
         (this._BACKGROUND = new JLabel()).setBounds(0, 0, 400, 200);
         this.add(this._BACKGROUND);
 
+        this.addProgressbar();
+
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+
+    private void addProgressbar() {
         (this._DOWNLOAD_PROGRESS = new JProgressBar(0, 100)).setBounds(0, 0, 400, 200);
         this._DOWNLOAD_PROGRESS.setBackground(new Color(45, 46, 42));
         this._DOWNLOAD_PROGRESS.setOpaque(true);
         this._DOWNLOAD_PROGRESS.setStringPainted(true);
         this._DOWNLOAD_PROGRESS.setBorderPainted(false);
-        this.add(this._DOWNLOAD_PROGRESS);
+        this._BACKGROUND.add(this._DOWNLOAD_PROGRESS);
     }
+
+    public JProgressBar getProgress() {
+        return this._DOWNLOAD_PROGRESS;
+    }
+
 
     public void setDownloadProgress(String f, float percent) {
         if (percent >= 90) this._DOWNLOAD_PROGRESS.setForeground(new Color(0, 153, 0));

@@ -30,11 +30,11 @@ public class Downloader {
         this._EXCLUDED_FILES.add("OpenRSC.jar");
         this._GAMEFOLDER = gameFolder;
         this._UPDATERGUI = new MainUpdaterGui();
-        _UPDATERGUI.init();
+        this._UPDATERGUI.init();
     }
 
     public void initUpdate() {
-        _UPDATERGUI.setWinVisible();
+        this._UPDATERGUI.build();
 
         try {
 
@@ -85,9 +85,6 @@ public class Downloader {
             String completeFileUrl = Defaults._GAME_FILES_SERVER + filename;
 
             URLConnection connection = new URL(completeFileUrl).openConnection();
-
-            System.out.println("File: " + filename);
-            System.out.println("URL: " + completeFileUrl);
 
             // File metadata
             String description = getDescription(file);
