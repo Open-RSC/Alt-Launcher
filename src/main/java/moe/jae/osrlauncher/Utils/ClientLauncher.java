@@ -43,10 +43,12 @@ public class ClientLauncher {
         }
 
         set(this.ip, this.port, this.gameType);
+        File cacheLocation = new File(this.configDirectory);
 
         try {
             System.out.println("Launching!");
             ProcessBuilder gameProcess = new ProcessBuilder(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java", "-jar", gameFile.getAbsolutePath());
+            gameProcess.directory(cacheLocation);
             gameProcess.start();
         } catch (Exception error) {
             System.out.println("Something bad happened, please report this error to admins:\n");
