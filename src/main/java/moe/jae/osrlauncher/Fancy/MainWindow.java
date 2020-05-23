@@ -20,6 +20,12 @@ public class MainWindow extends JFrame {
     private JLabel _OPENPK_LOGO;
     private JLabel _OPENRSC_LOGO;
 
+    // Buttons
+    private JLabel _BUG_REPORT;
+    private JLabel _RSC_WIKI;
+    private JLabel _ORSC_WIKI;
+    private JLabel _LAUNCHER_BUGS;
+
     // Other
     private String _CONFIG_DIR;
 
@@ -43,7 +49,11 @@ public class MainWindow extends JFrame {
         (this._BACKGROUND = new JLabel()).setBounds(0, 0, 854, 480);
         this.add(this._BACKGROUND);
 
+        // Add elements
         this.addLogos();
+        this.addButtons();
+
+        // Add listeners
         this.addListeners();
 
         this.pack();
@@ -109,6 +119,58 @@ public class MainWindow extends JFrame {
                 rscLauncher.launch();
             }
         });
+
+        this._BUG_REPORT.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Utils.openWebPage("https://orsc.dev/open-rsc/Game/issues");
+            }
+        });
+
+        this._RSC_WIKI.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Utils.openWebPage("https://classic.runescape.wiki");
+            }
+        });
+
+        this._ORSC_WIKI.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Utils.openWebPage("https://openrsc.com/wiki");
+            }
+        });
+
+        this._LAUNCHER_BUGS.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Utils.openWebPage("https://orsc.dev/jae/alternative-openrsc-launcher/-/issues");
+            }
+        });
+    }
+
+    private void addButtons() {
+        int baseXLocation = 125;
+        int addOffset = 150;
+
+        (this._BUG_REPORT = new JLabel(Utils.getImage("bug_report.png"))).setBounds(baseXLocation,250,100,150);
+        this._BACKGROUND.add(this._BUG_REPORT);
+
+        baseXLocation += addOffset;
+
+        (this._RSC_WIKI = new JLabel(Utils.getImage("official_wiki.png"))).setBounds(baseXLocation, 250, 100, 150);
+        this._BACKGROUND.add(this._RSC_WIKI);
+
+        baseXLocation += addOffset;
+
+        (this._ORSC_WIKI = new JLabel(Utils.getImage("orsc_wiki.png"))).setBounds(baseXLocation, 250, 100, 150);
+        this._BACKGROUND.add(this._ORSC_WIKI);
+
+        baseXLocation += addOffset;
+
+        (this._LAUNCHER_BUGS = new JLabel(Utils.getImage("launcher_bugs.png"))).setBounds(baseXLocation, 250, 100, 150);
+        this._BACKGROUND.add(this._LAUNCHER_BUGS);
+
     }
 
 }
