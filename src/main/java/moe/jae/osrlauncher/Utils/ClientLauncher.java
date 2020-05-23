@@ -40,10 +40,9 @@ public class ClientLauncher {
         }
 
         set(this.ip, this.port, this.gameType);
-        File cacheLocation = new File(this.configDirectory);
+        File cacheLocation = new File(this.configDirectory).getParentFile();
 
         try {
-            System.out.println("Launching!");
             ProcessBuilder gameProcess = new ProcessBuilder(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java", "-jar", gameFile.getAbsolutePath());
             gameProcess.directory(cacheLocation);
             gameProcess.start();
@@ -58,22 +57,36 @@ public class ClientLauncher {
 
         FileOutputStream fileOutIp;
         FileOutputStream fileOutPort;
+
+        File ipFile;
+        File portFile;
+
         try {
 
             switch (type) {
                 case "default":
                     fileOutIp = new FileOutputStream(this.configDirectory + File.separator + "ip.txt");
                     fileOutPort = new FileOutputStream(this.configDirectory + File.separator + "port.txt");
+                    ipFile = new File(this.configDirectory + File.separator + "ip.txt");
+                    portFile = new File(this.configDirectory + File.separator + "port.txt");
                     break;
 
                 case "openpk":
                     fileOutIp = new FileOutputStream(this.configDirectory + File.separator + "PK" + File.separator + "ip.txt");
                     fileOutPort = new FileOutputStream(this.configDirectory + File.separator + "PK" + File.separator + "port.txt");
+                    ipFile = new File(this.configDirectory + File.separator + "PK" + File.separator + "ip.txt");
+                    portFile = new File(this.configDirectory + File.separator + "PK" + File.separator + "port.txt");
                     break;
 
                 default:
                     return;
             }
+
+            if(ipFile.exists())
+                ipFile.delete();
+
+            if(portFile.exists())
+                portFile.delete();
 
             OutputStreamWriter outputWriterip = new OutputStreamWriter(fileOutIp);
             outputWriterip.write(ip);

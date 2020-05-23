@@ -18,7 +18,7 @@ public class Launcher {
         updater.updateGame();
 
         // Initialize UI
-        launcherWindow = new MainWindow();
+        launcherWindow = new MainWindow(this._CONFIG_DIRECTORY);
         launcherWindow.initializeWindow();
         launcherWindow.build();
     }
