@@ -68,14 +68,18 @@ public class MainWindow extends JFrame {
         (this._CABBAGE_LOGO = new JLabel(Utils.getImage("cabbage_logo.png"))).setBounds(baseXLocation,160,100,100);
         this._BACKGROUND.add(this._CABBAGE_LOGO);
         baseXLocation += addOffset;
-        // Local dev
-        (this._DEV_LOGO = new JLabel(Utils.getImage("dev_logo.png"))).setBounds(baseXLocation, 160, 100, 100);
-        this._BACKGROUND.add(this._DEV_LOGO);
-        baseXLocation += addOffset;
-        // OpenPK
-        (this._OPENPK_LOGO = new JLabel(Utils.getImage("openpk_logo.png"))).setBounds(baseXLocation, 160, 100, 100);
-        this._BACKGROUND.add(this._OPENPK_LOGO);
-        baseXLocation += addOffset;
+
+        /* TODO
+        *   Re-enable local dev & OpenPK when the servers are back up */
+//        // Local dev
+//        (this._DEV_LOGO = new JLabel(Utils.getImage("dev_logo.png"))).setBounds(baseXLocation, 160, 100, 100);
+//        this._BACKGROUND.add(this._DEV_LOGO);
+//        baseXLocation += addOffset;
+//        // OpenPK
+//        (this._OPENPK_LOGO = new JLabel(Utils.getImage("openpk_logo.png"))).setBounds(baseXLocation, 160, 100, 100);
+//        this._BACKGROUND.add(this._OPENPK_LOGO);
+//        baseXLocation += addOffset;
+
         // OpenRSC
         (this._OPENRSC_LOGO = new JLabel(Utils.getImage("openrsc_logo.png"))).setBounds(baseXLocation, 160, 100, 100);
         this._BACKGROUND.add(this._OPENRSC_LOGO);
@@ -93,23 +97,25 @@ public class MainWindow extends JFrame {
             }
         });
 
-        // Launch dev
-        this._DEV_LOGO.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                ClientLauncher devLauncher = new ClientLauncher(currentGameFolder, "default", "orsc.dev", "43599");
-                devLauncher.launch();
-            }
-        });
-
-        // Launch OpenPK
-        this._OPENPK_LOGO.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                ClientLauncher pkLauncher = new ClientLauncher(currentGameFolder, "openpk", "openpk.openrsc.com", "43597");
-                pkLauncher.launch();
-            }
-        });
+        /* TODO
+         *   Re-enable local dev & OpenPK when the servers are back up */
+//        // Launch dev
+//        this._DEV_LOGO.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                ClientLauncher devLauncher = new ClientLauncher(currentGameFolder, "default", "orsc.dev", "43599");
+//                devLauncher.launch();
+//            }
+//        });
+//
+//        // Launch OpenPK
+//        this._OPENPK_LOGO.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                ClientLauncher pkLauncher = new ClientLauncher(currentGameFolder, "openpk", "openpk.openrsc.com", "43597");
+//                pkLauncher.launch();
+//            }
+//        });
 
         // Launch OpenRSC
         this._OPENRSC_LOGO.addMouseListener(new MouseAdapter() {
