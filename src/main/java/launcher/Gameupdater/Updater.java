@@ -1,4 +1,4 @@
-package moe.jae.osrlauncher.Gameupdater;
+package launcher.Gameupdater;
 
 import java.io.File;
 

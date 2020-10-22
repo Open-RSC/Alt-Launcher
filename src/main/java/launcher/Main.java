@@ -1,7 +1,7 @@
-package moe.jae.osrlauncher;
+package launcher;
 
-import moe.jae.osrlauncher.Utils.Defaults;
-import moe.jae.osrlauncher.Utils.Utils;
+import launcher.Utils.Defaults;
+import launcher.Utils.Utils;
 
 public class Main {
 

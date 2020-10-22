@@ -1,8 +1,8 @@
-package moe.jae.osrlauncher.Fancy;
+package launcher.Fancy;
 
-import moe.jae.osrlauncher.Utils.ClientLauncher;
-import moe.jae.osrlauncher.Utils.Defaults;
-import moe.jae.osrlauncher.Utils.Utils;
+import launcher.Utils.ClientLauncher;
+import launcher.Utils.Defaults;
+import launcher.Utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;

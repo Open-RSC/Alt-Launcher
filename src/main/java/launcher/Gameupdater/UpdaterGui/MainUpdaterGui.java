@@ -1,6 +1,6 @@
-package moe.jae.osrlauncher.Gameupdater.UpdaterGui;
+package launcher.Gameupdater.UpdaterGui;
 
-import moe.jae.osrlauncher.Utils.Utils;
+import launcher.Utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;

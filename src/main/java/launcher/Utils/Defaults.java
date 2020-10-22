@@ -1,4 +1,4 @@
-package moe.jae.osrlauncher.Utils;
+package launcher.Utils;
 
 public class Defaults {
 

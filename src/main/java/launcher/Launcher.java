@@ -1,8 +1,8 @@
-package moe.jae.osrlauncher;
+package launcher;
 
-import moe.jae.osrlauncher.Fancy.MainWindow;
-import moe.jae.osrlauncher.Gameupdater.Updater;
-import moe.jae.osrlauncher.Utils.Defaults;
+import launcher.Fancy.MainWindow;
+import launcher.Gameupdater.Updater;
+import launcher.Utils.Defaults;
 
 public class Launcher {
 

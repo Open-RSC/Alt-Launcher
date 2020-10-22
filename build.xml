@@ -1,5 +1,4 @@
 <project default="compile" basedir=".">
-
     <property name="src" location="src/main"/>
     <property name="data" location="src/main"/>
     <property name="lib" location="lib"/>
@@ -21,9 +20,22 @@
         </javac>
         <jar basedir="${build}" destfile="${jar}">
             <manifest>
-                <attribute name="Main-Class" value="moe.jae.osrlauncher.Main"/>
+                <attribute name="Main-Class" value="launcher.Main"/>
             </manifest>
         </jar>
     </target>
 
+    <target name="runclient">
+        <java classname="launcher.Main" fork="true">
+            <jvmarg line="-Xms312m -Dsun.java2d.opengl=true"/>
+            <classpath>
+                <pathelement path="${jar}/"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="compile-and-run">
+        <antcall target="compile"/>
+        <antcall target="runclient"/>
+    </target>
 </project>

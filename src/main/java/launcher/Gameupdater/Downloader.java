@@ -1,8 +1,8 @@
-package moe.jae.osrlauncher.Gameupdater;
+package launcher.Gameupdater;
 
-import moe.jae.osrlauncher.Gameupdater.UpdaterGui.MainUpdaterGui;
-import moe.jae.osrlauncher.Main;
-import moe.jae.osrlauncher.Utils.Defaults;
+import launcher.Gameupdater.UpdaterGui.MainUpdaterGui;
+import launcher.Main;
+import launcher.Utils.Defaults;
 
 import java.io.BufferedInputStream;
 import java.io.File;

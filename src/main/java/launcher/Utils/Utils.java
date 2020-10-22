@@ -1,4 +1,4 @@
-package moe.jae.osrlauncher.Utils;
+package launcher.Utils;
 
 import javax.swing.*;
 import java.awt.*;
