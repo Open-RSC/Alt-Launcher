@@ -11,21 +11,21 @@ public class Main {
         String configFileLocation = Defaults._DEFAULT_CONFIG_DIR;
 
         // Get args from the command line if any
-        if(args.length > 0) {
+        if (args.length > 0) {
             // Help modifier
-            if(args[0].contains("-h") || args[0].contains("--help")) {
+            if (args[0].contains("-h") || args[0].contains("--help")) {
                 System.out.println("Help for the RSC launcher:\n" +
                         "	--help, -h displays this help message\n" +
                         "	--dir, -d changes the cache directory location\n" +
                         "Example:\n" +
                         "java -jar OpenRSC.jar -d /home/foo/.local/openrsc");
                 return;
-            } else if(args[0].contains("-d") || args[0].contains("--dir")) { // Change cache directory modifier
+            } else if (args[0].contains("-d") || args[0].contains("--dir")) { // Change cache directory modifier
                 // Check if there is a second arg (path)
-                if(args.length > 1) {
+                if (args.length > 1) {
 
                     // Check if the provided arg is a valid path
-                    if(Utils.isValidPath(args[1])) { // Valid path
+                    if (Utils.isValidPath(args[1])) { // Valid path
                         configFileLocation = Utils.getCanonicalPath(args[1]);
                     } else { // Invalid path
                         System.out.println("Error: please provide a valid path.\n" +

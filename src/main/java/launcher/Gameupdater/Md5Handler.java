@@ -18,87 +18,11 @@ public class Md5Handler {
 
     public Md5Handler(File file, String configDir) {
         this.configDir = configDir;
-        if(file.isFile()) {
+        if (file.isFile()) {
             loadFromMd5Table(file);
-        } else if(file.isDirectory()) {
+        } else if (file.isDirectory()) {
             loadFromDirectory(file);
         }
-    }
-
-    private void loadFromMd5Table(File file) {
-        try {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                Entry newEntry = new Entry(scanner.nextLine(), this.configDir);
-                if(!newEntry.getRef().getName().equals(Defaults._MD5_TABLE_FILENAME))
-                    entries.add(newEntry);
-            }
-        } catch (Exception error) {
-            error.printStackTrace();
-        }
-    }
-
-    private void loadFromDirectory(File directory) {
-        try {
-            File[] files = directory.listFiles();
-
-            for(File file : Objects.requireNonNull(files)) {
-                if(file.isDirectory()) {
-                    loadFromDirectory(file);
-                } else if(file.isFile()) {
-                    entries.add(new Entry(file));
-                }
-            }
-
-        } catch (Exception error) { error.printStackTrace(); }
-    }
-
-    public String getRefSum(File file) {
-        for(Entry entry : entries) {
-            if(entry.getRef().compareTo(file) == 0)
-                return entry.getSum();
-        }
-
-        return null;
-    }
-
-    public boolean hasRef(File ref) {
-        for(Entry entry : entries) {
-            if(entry.getRef().compareTo(ref) == 0)
-                return true;
-        }
-
-        return false;
-    }
-
-    public static class Entry {
-        private String sum;
-        private File ref;
-        private String configDir;
-
-        public Entry(String mixedLine, String configDir) {
-            this.configDir = configDir;
-            sum = mixedLine.substring(0, 32);
-            String path = mixedLine.substring(35);
-            path.replace(Pattern.quote("/"), File.separator);
-            ref = new File(configDir + path);
-        }
-
-        public Entry(File file) {
-            ref = file;
-            sum = getMD5Checksum(file);
-        }
-
-        public String getSum() { return this.sum; }
-        public File getRef() { return this.ref; }
-
-        public File getDownloadRef() {
-            String curRef = this.ref.toString();
-            String newRef = curRef.replace(this.configDir, "").replaceAll("\\\\", "/").replaceFirst("/", "");
-            File finalRef = new File(newRef);
-            return finalRef;
-        }
-
     }
 
     public static String getMD5Checksum(File file) {
@@ -123,7 +47,93 @@ public class Md5Handler {
             }
 
             return hexString.toString();
-        } catch (Exception a) { a.printStackTrace(); return null; }
+        } catch (Exception a) {
+            a.printStackTrace();
+            return null;
+        }
+    }
+
+    private void loadFromMd5Table(File file) {
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                Entry newEntry = new Entry(scanner.nextLine(), this.configDir);
+                if (!newEntry.getRef().getName().equals(Defaults._MD5_TABLE_FILENAME))
+                    entries.add(newEntry);
+            }
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+    }
+
+    private void loadFromDirectory(File directory) {
+        try {
+            File[] files = directory.listFiles();
+
+            for (File file : Objects.requireNonNull(files)) {
+                if (file.isDirectory()) {
+                    loadFromDirectory(file);
+                } else if (file.isFile()) {
+                    entries.add(new Entry(file));
+                }
+            }
+
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+    }
+
+    public String getRefSum(File file) {
+        for (Entry entry : entries) {
+            if (entry.getRef().compareTo(file) == 0)
+                return entry.getSum();
+        }
+
+        return null;
+    }
+
+    public boolean hasRef(File ref) {
+        for (Entry entry : entries) {
+            if (entry.getRef().compareTo(ref) == 0)
+                return true;
+        }
+
+        return false;
+    }
+
+    public static class Entry {
+        private String sum;
+        private File ref;
+        private String configDir;
+
+        public Entry(String mixedLine, String configDir) {
+            this.configDir = configDir;
+            sum = mixedLine.substring(0, 32);
+            String path = mixedLine.substring(35);
+            path.replace(Pattern.quote("/"), File.separator);
+            ref = new File(configDir + path);
+        }
+
+        public Entry(File file) {
+            ref = file;
+            sum = getMD5Checksum(file);
+        }
+
+        public String getSum() {
+            return this.sum;
+        }
+
+        public File getRef() {
+            return this.ref;
+        }
+
+        public File getDownloadRef() {
+            String curRef = this.ref.toString();
+            String newRef = curRef.replace(this.configDir, "").replaceAll("\\\\", "/").replaceFirst("/", "");
+            File finalRef = new File(newRef);
+            return finalRef;
+        }
+
     }
 
 

@@ -14,7 +14,7 @@ public class Updater {
     public void updateGame() {
 
         File gamePath = new File(this._CACHE_DIR);
-        if(!gamePath.exists() || !gamePath.isDirectory())
+        if (!gamePath.exists() || !gamePath.isDirectory())
             gamePath.mkdir();
 
         Downloader gameUpdater = new Downloader(this._CACHE_DIR);

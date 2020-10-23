@@ -1,13 +1,11 @@
 package launcher.Gameupdater;
 
 import launcher.Gameupdater.UpdaterGui.MainUpdaterGui;
-import launcher.Main;
 import launcher.Utils.Defaults;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -42,23 +40,23 @@ public class Downloader {
 
             // Populate MD5 checksums
             File currentMd5Table = new File(this._GAMEFOLDER + File.separator + Defaults._MD5_TABLE_FILENAME);
-            if(currentMd5Table.exists())
+            if (currentMd5Table.exists())
                 currentMd5Table.delete();
             Download(new File(Defaults._MD5_TABLE_FILENAME));
 
             Md5Handler localCache = new Md5Handler(currentMd5Table.getParentFile(), this._GAMEFOLDER);
             Md5Handler remoteCache = new Md5Handler(currentMd5Table, this._GAMEFOLDER);
 
-            for(Md5Handler.Entry entry : remoteCache.entries) {
+            for (Md5Handler.Entry entry : remoteCache.entries) {
 
-                if(_EXCLUDED_FILES.contains(entry.getRef().getName()))
+                if (_EXCLUDED_FILES.contains(entry.getRef().getName()))
                     continue;
 
                 entry.getRef().getParentFile().mkdirs();
 
                 String localSum = localCache.getRefSum(entry.getRef());
-                if(localSum != null) {
-                    if(_REFUSE_UPDATE.contains(entry.getRef().getName()) ||
+                if (localSum != null) {
+                    if (_REFUSE_UPDATE.contains(entry.getRef().getName()) ||
                             localSum.equalsIgnoreCase(entry.getSum())) {
                         continue;
                     }
@@ -91,12 +89,12 @@ public class Downloader {
             int fileSize = connection.getContentLength();
 
             try (BufferedInputStream inputStream = new BufferedInputStream(new URL(completeFileUrl).openStream());
-            FileOutputStream fileOS = new FileOutputStream(this._GAMEFOLDER + File.separator + filename)){
+                 FileOutputStream fileOS = new FileOutputStream(this._GAMEFOLDER + File.separator + filename)) {
                 byte data[] = new byte[1024];
                 int byteContent;
                 int totalRead = 0;
 
-                while((byteContent = inputStream.read(data, 0, 1024)) != -1) {
+                while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
 
                     totalRead += byteContent;
                     fileOS.write(data, 0, byteContent);
@@ -117,7 +115,7 @@ public class Downloader {
 
     private String getDescription(File ref) {
         int index = ref.getName().lastIndexOf('.');
-        if(index == -1)
+        if (index == -1)
             return "General";
         else {
             String extension = ref.getName().substring(index + 1);
@@ -129,7 +127,7 @@ public class Downloader {
                 return "Graphics";
             else if (extension.equalsIgnoreCase("jar"))
                 return "Executable";
-            else if(extension.equalsIgnoreCase("xm"))
+            else if (extension.equalsIgnoreCase("xm"))
                 return "Module";
             else
                 return "General";

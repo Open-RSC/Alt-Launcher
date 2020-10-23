@@ -9,9 +9,9 @@ public class ClientLauncher {
 
     private static ClassLoader loader;
     private static Class<?> mainClass;
+    private static JFrame frame;
     private String configDirectory;
     private String gameType;
-    private static JFrame frame;
     private String ip;
     private String port;
 
@@ -82,10 +82,10 @@ public class ClientLauncher {
                     return;
             }
 
-            if(ipFile.exists())
+            if (ipFile.exists())
                 ipFile.delete();
 
-            if(portFile.exists())
+            if (portFile.exists())
                 portFile.delete();
 
             OutputStreamWriter outputWriterip = new OutputStreamWriter(fileOutIp);
@@ -96,7 +96,8 @@ public class ClientLauncher {
             outputWriterPort.write(port);
             outputWriterPort.close();
 
-        } catch (Exception ignoredError) {}
+        } catch (Exception ignoredError) {
+        }
 
     }
 

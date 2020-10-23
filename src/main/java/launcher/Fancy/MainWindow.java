@@ -36,7 +36,7 @@ public class MainWindow extends JFrame {
     public void initializeWindow() {
         _LAUNCHER_WINDOW = new JFrame();
 
-        this.setPreferredSize(new Dimension(854,480));
+        this.setPreferredSize(new Dimension(854, 480));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle(Defaults._TITLE);
         this.setResizable(false);
@@ -65,12 +65,12 @@ public class MainWindow extends JFrame {
         int baseXLocation = 125;
         int addOffset = 150;
         // Cabbage
-        (this._CABBAGE_LOGO = new JLabel(Utils.getImage("cabbage_logo.png"))).setBounds(baseXLocation,160,100,100);
+        (this._CABBAGE_LOGO = new JLabel(Utils.getImage("cabbage_logo.png"))).setBounds(baseXLocation, 160, 100, 100);
         this._BACKGROUND.add(this._CABBAGE_LOGO);
         baseXLocation += addOffset;
 
         /* TODO
-        *   Re-enable local dev & OpenPK when the servers are back up */
+         *   Re-enable local dev & OpenPK when the servers are back up */
 //        // Local dev
 //        (this._DEV_LOGO = new JLabel(Utils.getImage("dev_logo.png"))).setBounds(baseXLocation, 160, 100, 100);
 //        this._BACKGROUND.add(this._DEV_LOGO);
@@ -159,7 +159,7 @@ public class MainWindow extends JFrame {
         int baseXLocation = 125;
         int addOffset = 150;
 
-        (this._BUG_REPORT = new JLabel(Utils.getImage("bug_report.png"))).setBounds(baseXLocation,250,100,150);
+        (this._BUG_REPORT = new JLabel(Utils.getImage("bug_report.png"))).setBounds(baseXLocation, 250, 100, 150);
         this._BACKGROUND.add(this._BUG_REPORT);
 
         baseXLocation += addOffset;

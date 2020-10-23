@@ -23,7 +23,7 @@ public class Utils {
         File checkFile = new File(path);
         try {
             return checkFile.getCanonicalPath();
-        } catch(Exception error) { // If error, fallback to the default location
+        } catch (Exception error) { // If error, fallback to the default location
             return Defaults._DEFAULT_CONFIG_DIR;
         }
     }
@@ -35,7 +35,7 @@ public class Utils {
 
     public static void openWebPage(final String url) {
         final Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-        if(desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
             try {
                 desktop.browse(new URL(url).toURI());
             } catch (Exception error) {

@@ -7,21 +7,21 @@ import java.awt.*;
 
 public class MainUpdaterGui extends JFrame {
 
+    private static MainUpdaterGui _INSTANCE;
     private JFrame _UPDATER_WINDOW;
     private JProgressBar _DOWNLOAD_PROGRESS;
-    private static MainUpdaterGui _INSTANCE;
     private JLabel _BACKGROUND;
 
     public MainUpdaterGui() {
         MainUpdaterGui._INSTANCE = this;
     }
 
-    public void hideWin() {
-        this.setVisible(false);
-    }
-
     public static MainUpdaterGui get() {
         return MainUpdaterGui._INSTANCE;
+    }
+
+    public void hideWin() {
+        this.setVisible(false);
     }
 
     public void init() {
