@@ -16,5 +16,4 @@ public class Launcher {
         final MainWindow frame = new MainWindow();
         frame.build();
     }
-
 }
