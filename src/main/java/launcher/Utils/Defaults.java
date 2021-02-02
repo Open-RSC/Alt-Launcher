@@ -14,7 +14,7 @@ public class Defaults {
 
     // URLS
     public final static String _GAME_VERSION_UPDATE_URL = "https://orsc.dev/jae/alternative-openrsc-launcher/-/raw/master/src/main/java/moe/jae/osrlauncher/Utils/Defaults.java";
-    public final static String _GAME_FILES_SERVER = "http://game.openrsc.com/downloads/";
+    public final static String _GAME_FILES_SERVER = "http://game.openrsc.com/static/downloads/";
 
     // STRINGS
     public final static String _TITLE = "Open RSC Game Launcher";

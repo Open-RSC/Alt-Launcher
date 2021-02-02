@@ -10,10 +10,10 @@ public class ClientLauncher {
     private static ClassLoader loader;
     private static Class<?> mainClass;
     private static JFrame frame;
-    private String configDirectory;
-    private String gameType;
-    private String ip;
-    private String port;
+    private final String configDirectory;
+    private final String gameType;
+    private final String ip;
+    private final String port;
 
     public ClientLauncher(String configDir, String gameType, String ip, String port) {
         this.configDirectory = configDir;
@@ -82,21 +82,26 @@ public class ClientLauncher {
                     return;
             }
 
-            if (ipFile.exists())
-                ipFile.delete();
+            // Sets the IP and port
+            FileOutputStream fileout;
+            try {
+                fileout = new FileOutputStream("Cache" + File.separator + "ip.txt");
+                OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
+                outputWriter.write(ip);
+                outputWriter.close();
+            } catch (Exception ignored) {
+            }
+            try {
+                fileout = new FileOutputStream("Cache" + File.separator + "port.txt");
+                OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
+                outputWriter.write(port);
+                outputWriter.close();
+            } catch (Exception ignored) {
+            }
 
-            if (portFile.exists())
-                portFile.delete();
 
-            OutputStreamWriter outputWriterip = new OutputStreamWriter(fileOutIp);
-            outputWriterip.write(ip);
-            outputWriterip.close();
-
-            OutputStreamWriter outputWriterPort = new OutputStreamWriter(fileOutPort);
-            outputWriterPort.write(port);
-            outputWriterPort.close();
-
-        } catch (Exception ignoredError) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
