@@ -1,9 +1,12 @@
 package launcher.Utils;
 
+import java.io.File;
+
 public class Defaults {
 
     // DEFAULT FOLDERS
     public final static String _DEFAULT_CONFIG_DIR = "Cache";
+    public static final String SPRITEPACK_DIR = _DEFAULT_CONFIG_DIR + File.separator + "video" + File.separator + "spritepacks";
 
     // WORLD STATS
     public final static String _RSCC_WORLD_STATS = "https://rsccabbage.com";
@@ -13,11 +16,11 @@ public class Defaults {
     public final static String _DEV_WORLD_STATS = "https://orsc.dev";
 
     // URLS
-    public final static String _GAME_VERSION_UPDATE_URL = "https://orsc.dev/jae/alternative-openrsc-launcher/-/raw/master/src/main/java/moe/jae/osrlauncher/Utils/Defaults.java";
+    public static final String _VERSION_UPDATE_URL = "https://gitlab.com/open-runescape-classic/core/-/raw/master/PC_Launcher/src/com/loader/openrsc/Constants.java";
     public final static String _GAME_FILES_SERVER = "http://game.openrsc.com/static/downloads/";
 
     // STRINGS
-    public final static String _TITLE = "Open RSC Game Launcher";
+    public final static String _TITLE = "Open RuneScape Classic Game Launcher";
 
     // FILES
     public final static String _CLIENT_FILENAME = "Open_RSC_Client.jar";
@@ -26,6 +29,6 @@ public class Defaults {
     public final static String _MD5_TABLE_FILENAME = "MD5.SUM";
 
     // VERSION
-    public final static Double _CURRENT_VERSION = 20200324.130000;
+    public final static Double _CURRENT_VERSION = 20210128.093500;
 
 }

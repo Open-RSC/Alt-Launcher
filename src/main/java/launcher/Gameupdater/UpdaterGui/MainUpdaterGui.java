@@ -29,7 +29,7 @@ public class MainUpdaterGui extends JFrame {
         this.setPreferredSize(new Dimension(400, 200));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setUndecorated(true);
-        this.setTitle("ORSC Updater");
+        this.setTitle("Open RuneScape Classic Updater");
         this.setIconImage(Utils.getImage("icon.png").getImage());
     }
 

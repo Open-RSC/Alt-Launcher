@@ -6,21 +6,15 @@ import launcher.Utils.Defaults;
 
 public class Launcher {
 
-    private String _CONFIG_DIRECTORY;
     private MainWindow launcherWindow;
 
-    public Launcher(String configDirectory) {
-        this._CONFIG_DIRECTORY = configDirectory;
-    }
-
     public void initializeLauncher() {
-        Updater updater = new Updater(this._CONFIG_DIRECTORY, Defaults._CURRENT_VERSION.toString());
+        Updater updater = new Updater(Defaults._DEFAULT_CONFIG_DIR, Defaults._CURRENT_VERSION.toString());
         updater.updateGame();
 
         // Initialize UI
-        launcherWindow = new MainWindow(this._CONFIG_DIRECTORY);
-        launcherWindow.initializeWindow();
-        launcherWindow.build();
+        final MainWindow frame = new MainWindow();
+        frame.build();
     }
 
 }

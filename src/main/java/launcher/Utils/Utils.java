@@ -4,8 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Utils {
+    private static DateFormat df;
+    private static long timeCorrection;
+    private static long lastTimeUpdate;
 
     // Simple valid path checker
     public static boolean isValidPath(String path) {
@@ -33,13 +40,13 @@ public class Utils {
         return new ImageIcon(Utils.class.getResource("/data/images/" + name));
     }
 
-    public static void openWebPage(final String url) {
+    public static void openWebpage(final String url) {
         final Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
         if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
             try {
                 desktop.browse(new URL(url).toURI());
-            } catch (Exception error) {
-                error.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -58,6 +65,13 @@ public class Utils {
             error.printStackTrace();
         }
         return null;
+    }
+
+    public static String getServerTime() {
+        if (Utils.df == null) {
+            (Utils.df = new SimpleDateFormat("h:mm:ss a")).setTimeZone(TimeZone.getTimeZone("America/New_York"));
+        }
+        return Utils.df.format(new Date());
     }
 
     public static String stripHtml(final String text) {
