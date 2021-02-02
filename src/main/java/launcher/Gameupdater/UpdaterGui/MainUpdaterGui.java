@@ -1,5 +1,6 @@
 package launcher.Gameupdater.UpdaterGui;
 
+import launcher.Utils.Defaults;
 import launcher.Utils.Utils;
 
 import javax.swing.*;
@@ -27,10 +28,10 @@ public class MainUpdaterGui extends JFrame {
     public void init() {
         _UPDATER_WINDOW = new JFrame();
         this.setPreferredSize(new Dimension(400, 200));
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setUndecorated(true);
-        this.setTitle("Open RuneScape Classic Updater");
+        this.setTitle(Defaults._TITLE);
         this.setIconImage(Utils.getImage("icon.png").getImage());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void build() {

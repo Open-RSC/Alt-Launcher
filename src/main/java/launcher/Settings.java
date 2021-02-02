@@ -11,8 +11,8 @@ public class Settings {
 	public static boolean autoUpdate = true; // must be false if using ant to compile! (check launcherSettings)
 
 	// props keys
-	private static String showBotButtonsKey = "show_bot_buttons";
-	private static String autoUpdateKey = "auto_update";
+	private static final String showBotButtonsKey = "show_bot_buttons";
+	private static final String autoUpdateKey = "auto_update";
 
 	static void loadSettings() {
 		Properties props = new Properties();

@@ -1,9 +1,10 @@
 package launcher.listeners;
 
+import launcher.Utils.ClientLauncher;
 import launcher.Utils.Defaults;
 import launcher.Fancy.MainWindow;
-import launcher.elements.CheckCombo;
 import launcher.Utils.Utils;
+import launcher.elements.CheckCombo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -149,6 +150,6 @@ public class ButtonListener implements ActionListener {
         File configFile = new File(Defaults._DEFAULT_CONFIG_DIR + File.separator + "config.txt");
         configFile.delete();
 
-        //ClientLauncher.launch(dev);
+        ClientLauncher.launchClient(dev);
     }
 }
