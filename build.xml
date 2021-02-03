@@ -20,7 +20,6 @@
         <copy todir="${build}/data">
             <fileset dir="src/main/resources"/>
         </copy>
-        <antcall target="setversion"/>
         <javac srcdir="${src}" destdir="${build}" debug="on" target="${javac.source}" source="${javac.target}"
                includeantruntime="false">
             <compilerarg line="-Xlint:deprecation"/>
