@@ -9,7 +9,7 @@ public class Defaults {
     public static final String SPRITEPACK_DIR = _DEFAULT_CONFIG_DIR + File.separator + "video" + File.separator + "spritepacks";
 
     // URLS
-    public static final String _VERSION_UPDATE_URL = "https://gitlab.com/open-runescape-classic/alternative-openrsc-launcher/-/raw/master/src/main/java/launcher/Utils/Defaults.java";
+    public static final String _VERSION_UPDATE_URL = "https://raw.githubusercontent.com/Open-RSC/Alt-Launcher/master/src/main/java/launcher/Utils/Defaults.java";
     public final static String _GAME_FILES_SERVER = "http://game.openrsc.com/static/downloads/";
 
     // STRINGS
@@ -21,5 +21,5 @@ public class Defaults {
     public final static String _MD5_TABLE_FILENAME = "MD5.SUM";
 
     // VERSION
-    public final static Double _CURRENT_VERSION = 20210203.051505;
+    public final static Double _CURRENT_VERSION = 20210203.173734;
 }

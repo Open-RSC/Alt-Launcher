@@ -139,7 +139,7 @@ public class Launcher extends Component {
             while ((line = in.readLine()) != null) {
                 if (line.contains("_CURRENT_VERSION")) {
                     currentVersion = Double.parseDouble(line.substring(line.indexOf('=') + 1, line.indexOf(';')));
-                    System.out.printf("@|green Current Version: %f|@%n", currentVersion);
+                    System.out.println("Current Version: " + currentVersion);
                     break;
                 }
             }
