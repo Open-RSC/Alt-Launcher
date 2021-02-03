@@ -21,6 +21,6 @@ public class Defaults {
     public final static String _MD5_TABLE_FILENAME = "MD5.SUM";
 
     // VERSION
-    public final static Double _CURRENT_VERSION = 20210128.093500;
+    public final static Double _CURRENT_VERSION = 20210203.034209;
 
 }

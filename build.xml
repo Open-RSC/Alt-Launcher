@@ -7,6 +7,12 @@
     <property name="javac.source" value="1.8"/>
     <property name="javac.target" value="1.8"/>
 
+    <tstamp>
+        <format property="calculatedVersion"
+                pattern="yyyyMMdd.HHmmss"
+                timezone="GMT" />
+    </tstamp>
+
     <target name="compile">
         <delete file="${jar}"/>
         <delete dir="${build}"/>
@@ -14,6 +20,7 @@
         <copy todir="${build}/data">
             <fileset dir="src/main/resources"/>
         </copy>
+        <antcall target="setversion"/>
         <javac srcdir="${src}" destdir="${build}" debug="on" target="${javac.source}" source="${javac.target}"
                includeantruntime="false">
             <compilerarg line="-Xlint:deprecation"/>
@@ -23,6 +30,17 @@
                 <attribute name="Main-Class" value="launcher.Main"/>
             </manifest>
         </jar>
+    </target>
+
+    <target name="setversion">
+        <replaceregexp
+                file="${src}/java/launcher/Utils/Defaults.java"
+                match="_CURRENT_VERSION = (.*)"
+                replace="_CURRENT_VERSION = ${calculatedVersion};"
+                byline="true"
+        />
+        <echo message="Replaced version number in Defaults.java with ${calculatedVersion}" />
+        <echo message="Run ant dist now to compile." />
     </target>
 
     <target name="runclient">

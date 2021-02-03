@@ -4,7 +4,6 @@ import launcher.Utils.ClientLauncher;
 import launcher.Utils.Defaults;
 import launcher.Fancy.MainWindow;
 import launcher.Utils.Utils;
-import launcher.elements.CheckCombo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
