@@ -56,7 +56,7 @@ public class Settings {
 			props.setProperty(autoUpdateKey, Boolean.toString(autoUpdate));
 
 			FileOutputStream out = new FileOutputStream(Defaults._DEFAULT_CONFIG_DIR + "/launcherSettings.conf");
-			props.store(out, "---openrsc launcher config---");
+			props.store(out, "---open runescape classic launcher config---");
 			out.close();
 		} catch (IOException e) {
 			System.out.println("Could not save launcher settings!");
