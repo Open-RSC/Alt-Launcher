@@ -13,9 +13,15 @@ import java.net.URLConnection;
 public class Launcher extends Component {
 
     public static ImageIcon icon = null;
+    public static ImageIcon icon_warn = null;
+
+    private JProgressBar m_progressBar;
 
     public void initializeLauncher() {
         Settings.loadSettings();
+
+        // Add progress bar
+        m_progressBar = new JProgressBar();
 
         if (!Settings.autoUpdate) {
             int response =
@@ -59,17 +65,17 @@ public class Launcher extends Component {
         }
 
         if (Settings.autoUpdate) {
-            System.out.println("Checking for launcher update...");
-
-            if (!checkVersionNumber()) {
-                System.out.println("Launcher update is available");
+            setStatus("Checking for launcher update...");
+            double latestVersion = fetchLatestVersionNumber();
+            if (Defaults._CURRENT_VERSION < latestVersion) {
+                setStatus("Launcher update is available");
                 int response =
                         JOptionPane.showConfirmDialog(
                                 this,
                                 "A launcher update is available!\n"
                                         + "\n"
                                         + "Latest: "
-                                        //+ String.format("%8.6f", latestVersion)
+                                        + String.format("%8.6f", latestVersion)
                                         + "\n"
                                         + "Installed: "
                                         + String.format("%8.6f", Defaults._CURRENT_VERSION)
@@ -119,9 +125,9 @@ public class Launcher extends Component {
         frame.build();
     }
 
-    private static boolean checkVersionNumber() {
+    public static Double fetchLatestVersionNumber() {
         try {
-            Double currentVersion = 0.0;
+            double currentVersion = 0.0;
             URL updateURL = new URL(Defaults._VERSION_UPDATE_URL);
 
             // Open connection
@@ -131,25 +137,27 @@ public class Launcher extends Component {
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
             while ((line = in.readLine()) != null) {
-                if (line.contains("VERSION_NUMBER")) {
+                if (line.contains("_CURRENT_VERSION")) {
                     currentVersion = Double.parseDouble(line.substring(line.indexOf('=') + 1, line.indexOf(';')));
+                    System.out.printf("@|green Current Version: %f|@%n", currentVersion);
                     break;
                 }
             }
 
             // Close connection
             in.close();
-            return currentVersion.equals(Defaults._CURRENT_VERSION);
+            return currentVersion;
         } catch (Exception e) {
-            return false;
+            System.out.println("Error checking latest version");
+            return Defaults._CURRENT_VERSION;
         }
     }
 
     public boolean updateJar() {
-        try {
-            if (checkVersionNumber()) // Check if version is the same
-                return true;
+        setStatus("Starting launcher update...");
+        setProgress(0, 1);
 
+        try {
             URL url = new URL(Defaults._GAME_FILES_SERVER+Defaults._LAUNCHER_FILENAME);
 
             // Open connection
@@ -166,6 +174,8 @@ public class Launcher extends Component {
             int readSize;
             while ((readSize = input.read(data, offset, size - offset)) != -1) {
                 offset += readSize;
+                setStatus("Updating launcher (" + (offset / 1024) + "KiB / " + (size / 1024) + "KiB)");
+                setProgress(offset, size);
             }
 
             if (offset == size) {
@@ -177,5 +187,51 @@ public class Launcher extends Component {
         } catch (Exception ignored) {
         }
         return true;
+    }
+
+    /**
+     * Sets the progress value of the launcher progress bar.
+     *
+     * @param value the number of tasks that have been completed
+     * @param total the total number of tasks to complete
+     */
+    public void setProgress(final int value, final int total) {
+        SwingUtilities.invokeLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        if (total == 0) {
+                            m_progressBar.setValue(0);
+                            return;
+                        }
+
+                        m_progressBar.setValue(value * 100 / total);
+                    }
+                });
+    }
+
+    /**
+     * Changes the launcher progress bar text and pauses the thread for 5 seconds.
+     *
+     * @param text the text to change the progress bar text to
+     */
+    public void error(String text) {
+        setStatus("Error: " + text);
+        try {
+            Thread.sleep(5000);
+            System.exit(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setStatus(final String text) {
+        SwingUtilities.invokeLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        m_progressBar.setString(text);
+                    }
+                });
     }
 }
